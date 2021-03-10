@@ -1,38 +1,49 @@
-
-const whatchmovie = new Promise ((resolve, reject) => {
-    let connect = true;
-    if (connect){
-        resolve ("this is perfect");
+var Promise1 = new Promise ((resolve,reject)=>{
+  fetch('https://jsonplaceholder.typicode.com/todos/1')
+  .then(response => response.json())
+  .then(data => {
+    console.log(data)
+    document.getElementById("a").innerHTML = "User ID: "+data.id+",  title is: "+data.title+ " and  is completed= "+data.completed
+  })
+  .then(data => {
+    if(data == 1){
+      resolve("Good")
     } else {
-        reject (Error("this is bad"));
+      reject ("bad")
     }
- 
-});
-
-const recordmovie = new Promise ((resolve, reject) => {
-
-   let record = true; 
- if (record){
-        resolve ("this is perfect");
-    } else  {
-        reject (Error("this is bad"));
-    }
-});
-
-const seemovie = new Promise ((resolve, reject) => {
-
- let see = true; 
- if (see){
-        resolve ("this is perfect");
+  })
+})
+var Promise2 = new Promise ((resolve,reject)=>{
+  fetch('https://jsonplaceholder.typicode.com/todos/2')
+  .then(response => response.json())
+  .then(data => {
+    console.log(data)
+    document.getElementById("b").innerHTML = "User ID: "+data.id+",  title is: "+data.title+ " and  is completed= "+data.completed
+  })
+  .then(data => {
+    if(data == 2){
+      resolve("Good")
     } else {
-        reject (Error("this is bad"));
+      reject ("Bad")
     }
-});
-
-Promise.all ([
-    whatchmovie,
-    recordmovie,
-    seemovie,
-]).then((massages) =>{
-    console.log (massages) 
+  })
+})
+var Promise3 = new Promise ((resolve,reject)=>{
+  fetch('https://jsonplaceholder.typicode.com/todos/3')
+  .then(response => response.json())
+  .then(data => {
+    console.log(data)
+    document.getElementById("c").innerHTML = "User ID: "+data.id+",  title is: "+data.title+ " and  is completed= "+data.completed
+  })
+  .then(data => {
+    if(data == 3){
+      resolve("Good")
+    } else {
+      reject ("bad")
+    }
+  })
+})
+Promise.all([Promise1, Promise2, Promise3])
+.then((result) => {
+  console.log(result)
 })
